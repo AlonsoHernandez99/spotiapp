@@ -11,12 +11,14 @@ export class ArtistComponent implements OnInit {
 
   artist: any = {};
   topTracks: any[] = [];
+  error: boolean;
   loading: boolean;
+  mensajeError: string;
 
   constructor(
     private route: ActivatedRoute,
     private service: SpotifyService
-  ) { }
+  ) { this.error = false; }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -30,12 +32,20 @@ export class ArtistComponent implements OnInit {
     this.service.getArtist(id).subscribe(data => {
       this.artist = data;
       this.loading = false;
+    }, (errorService) => {
+      this.error = true;
+      this.loading = false;
+      this.mensajeError = errorService.error.error.message;
     });
   }
 
   getTopTracks(id: string) {
     this.service.getTopTracks(id).subscribe(data => {
       this.topTracks = data;
+    }, (errorService) => {
+      this.error = true;
+      this.loading = false;
+      this.mensajeError = errorService.error.error.message;
     });
   }
 

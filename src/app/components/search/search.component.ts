@@ -9,10 +9,13 @@ import { SpotifyService } from '../../services/spotify.service';
 export class SearchComponent implements OnInit {
 
   artists: any[] = [];
+  error: boolean;
   loading: boolean;
+  mensajeError: string;
+
   constructor(
     private service: SpotifyService
-  ) { this.loading = false; }
+  ) { this.loading = false;this.error = false; }
 
   ngOnInit(): void {
   }
@@ -24,6 +27,10 @@ export class SearchComponent implements OnInit {
         .subscribe((data: any) => {
           this.artists = data;
           this.loading = false;
+        }, (errorService) => {
+          this.error = true;
+          this.loading = false;
+          this.mensajeError = errorService.error.error.message;
         });
     }
   }
