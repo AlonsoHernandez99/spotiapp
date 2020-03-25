@@ -1,0 +1,14 @@
+<div class="card-columns mt-4 animated fadeIn">
+    <div (click)="showArtist(release)" class="card puntero" *ngFor="let release of items">
+        <img class="card-img-top" [src]="release.images | noimage" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title"> {{ release.name }}</h5>
+            <p class="card-text">
+                <span class="badge badge-info" *ngFor="let artist of release.artists">{{ artist.name }}</span>
+            </p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+    </div>
+</div>

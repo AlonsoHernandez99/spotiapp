@@ -1,0 +1,6 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div *ngIf="error" class="alert alert-danger animated fadeIn" role="alert">
+    <h3>Error: {{mensajeError}}</h3>
+</div>
+<app-card [items]="newReleases"></app-card>

@@ -1,0 +1,7 @@
+<div class="row">
+    <div class="col">
+        <input #filter type="text" (keyup)="searchArtits(filter.value)" class="form-control" placeholder="Search artits...">
+    </div>
+</div>
+<app-loading *ngIf="loading"></app-loading>
+<app-card [items]="artists" class="mt-2"></app-card>
